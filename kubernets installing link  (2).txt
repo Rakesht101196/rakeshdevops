@@ -1,0 +1,31 @@
+https://github.com/justmeandopensource/kubernetes/blob/master/docs/install-cluster-ubuntu-20.md
+
+
+kubeadm init --apiserver-advertise-address=172.31.41.159 --pod-network-cidr=192.168.0.0/16  --ignore-preflight-errors=all
+
+
+
+kubeadm join 172.31.41.159:6443 --token opwok0.6n7c7oqhw6646n7e--discovery-token-ca-cert-hash sha256:e6c21a8af2f8269eeb5f08d3d3cb2f1e646c1d52167e848604a7e9fbbf03fcf9
+
+above command if its not works use 
+
+
+this one use
+kubeadm join 172.31.41.159:6443 --token opwok0.6n7c7oqhw6646n7e \
+    --discovery-token-ca-cert-hash sha256:e6c21a8af2f8269eeb5f08d3d3cb2f1e646c1d52167e848604a7e9fbbf03fcf9
+
+
+
+2
+
+
+kubeadm join 172.31.19.224:6443 --token wd81cg.2f8emz87jx5ia3yf \
+    --discovery-token-ca-cert-hash sha256:45453d856539b20a5e5f72da53b666caf6ea0cbbbef41df9244e78d4765025e6
+
+3
+kubeadm init --apiserver-advertise-address=172.31.19.153 --pod-network-cidr=192.168.0.0/16  --ignore-preflight-errors=all
+
+
+
+kubeadm join 172.31.19.153:6443 --token 7ph55x.x1da5km6xoa5hnrz \
+    --discovery-token-ca-cert-hash sha256:7a3e42a8642b434e9e2921b08995b483cb6969e77dfc7dacc94d0879b94a2b20
