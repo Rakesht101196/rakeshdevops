@@ -1,0 +1,110 @@
+     PARAMETERS
+
+pipeline {
+	agent any
+	tools {
+		maven 'Maven3.6.3'
+		jdk 'jdk111'
+		gradle 'gradle'
+	
+	parameters {
+		string(name: 'VERSION', defaultValue: '1.1.0', description: 'version deployment on any env')
+		choice(name: 'BRANCH_NAME', choices: ['master', 'dev', 'test' ], description: ''
+	environment {
+		VERSION = '1.1.3'
+		SERVER_CREDENTIALS = credentials('github-creds')
+		SEVER = 
+	triggers {
+		cron(* * * * *)
+	}
+    triggers {
+		pollSCM(* * * * *)
+	}	
+	triggers {
+		upstream(upstreamproject : 'job1, job2')
+	}    
+	stages {
+		stage( 'Git checkout') {
+		    git credentialsId: 'github', url: 'https://github.com/abhi6666/Java-repository.git'
+		}
+		stage('Build') {
+		    when {
+				expression {
+				  BRANCH_NAME == 'dev' || BRANCH_NAME == 'master'
+				}
+            }				
+			steps {
+			     echo " ${params.BRANCH_NAME}"
+			     sh 'mvn clean install' 
+				 sh 'ls'
+				 sh 'cp /source /destination
+				 echo "Build is done for the version ${VERSION}"
+				 sh '''	ls
+						pwd
+						./deployment.sh'''
+						
+						sshagent(['31d3e20e-a167-4b91-97d2-0519c3b99b66']) {
+    
+}
+			}
+        }
+		
+		stage('Test') {
+			steps {
+			      
+				 echo 'testing the application'
+			}
+        }
+		
+		stage('Deploy') {
+			steps {
+			     sh './deployment.sh' 
+				 echo 'Deploying the application'
+				 "git push URL $SERVER_CREDENTIAL $VERSION"
+			}
+        }
+		
+	}
+	
+}
+
+
+
+post {
+	always {
+	    //sending an emil
+		
+	}
+	
+	success {
+	   
+	}
+    failure {
+    }	
+		
+when 	
+
+pipeline {
+	agent any	
+	stages {
+		stage('Build') {				
+			steps {
+				 echo "Build is done"
+			}
+        }	
+		stage('Run test') {				
+		Parallel {
+			stage ('Test on windows') {
+			agent {label master}
+				steps {
+				}
+				 
+			stage ('Test on Linux') {
+			agent {label slave1}
+				steps {
+				}
+		}
+		
+		stage { 
+		
+		
